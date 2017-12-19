@@ -2,7 +2,7 @@ def binarySearchRec(arr, key, low, high):
     if low > high:
         return -1
 
-    mid = (low + high)//2     # // is integer division in Python 3
+    mid = (low + high)//2   # // is integer division in Python 3
     if key == arr[mid]:
         return mid
     elif key < arr[mid]:
