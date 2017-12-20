@@ -3,26 +3,41 @@ class Node:
         self.data = data
         self.nextNode = nextNode
 
+    def getData():
+        return self.data
+
+    def setData(data):
+        self.data = data
+
+    def getNext():
+        return self.nextNode
+
+    def setNext(nextNode):
+        self.nextNode = nextNode
+
 
 class LinkedList:
     def __init__(self, head=None):
         self.head = head
+        self.tail = head
+        self.size = 1 if head != None else 0
 
     def insertHead(self, newData):
         newNode = Node(newData, self.head)
         self.head = newNode
+        if self.tail == None:
+            self.tail = newNode
+        self.size += 1
 
     def insertTail(self, newData):
-        if self.head == None:
-            insertHead(newData)
-            return
-
-        curr = self.head
-        while curr.nextNode != None:
-            curr = curr.nextNode
-
         newNode = Node(newData)
-        curr.nextNode = newNode
+        if self.tail == None:
+            self.head = newNode
+            self.tail = newNode
+        else:
+            self.tail.nextNode = newNode
+            self.tail = self.tail.nextNode
+        self.size += 1
 
     def print(self):
         curr = self.head
@@ -38,8 +53,8 @@ class LinkedList:
 
         return False if curr == None else True
 
-    # True: data existed in LinkedList and was deleted
-    # False: data did not exist in LinkedList
+    # True: data existed in list and was deleted
+    # False: data did not exist in list
     def delete(self, data):
         curr = self.head
         prev = None
@@ -50,11 +65,15 @@ class LinkedList:
         if curr == None:
             return False
         
-        if prev == None:
+        if prev == None:    # Data is at head of list
             self.head = curr.nextNode
         else:
             prev.nextNode = curr.nextNode
 
+        if curr.nextNode == None:   # Data is at tail of list
+            self.tail = curr
+
+        self.size -= 1
         return True # Python has built-in garbage collection
 
 
@@ -65,14 +84,16 @@ if __name__ == "__main__":
     myLL.insertHead(3)
     myLL.insertHead(2)
     myLL.insertHead(1)
-    
+
     myLL.insertTail(5)
     myLL.insertTail(6)
 
-    # myLL.print()
+    myLL.print()
+    print("Size:", myLL.size)
     print("Is 1 in myLL?", myLL.exists(1))
     print("Is 7 in myLL?", myLL.exists(7))
 
     myLL.delete(4)
     myLL.delete(1)
     myLL.print()
+    print("Size:", myLL.size)
