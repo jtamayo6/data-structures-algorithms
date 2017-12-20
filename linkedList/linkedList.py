@@ -24,23 +24,55 @@ class LinkedList:
         newNode = Node(newData)
         curr.nextNode = newNode
 
-
-    def printList(self):
+    def print(self):
         curr = self.head
         while curr != None:
-            print(curr.data)
+            print(curr.data, end=' ')
+            curr = curr.nextNode
+        print()
+
+    def exists(self, data):
+        curr = self.head
+        while curr != None and curr.data != data:
             curr = curr.nextNode
 
+        return False if curr == None else True
+
+    # True: data existed in LinkedList and was deleted
+    # False: data did not exist in LinkedList
+    def delete(self, data):
+        curr = self.head
+        prev = None
+        while curr != None and curr.data != data:
+            prev = curr
+            curr = curr.nextNode
+
+        if curr == None:
+            return False
+        
+        if prev == None:
+            self.head = curr.nextNode
+        else:
+            prev.nextNode = curr.nextNode
+
+        return True # Python has built-in garbage collection
 
 
 if __name__ == "__main__":
-    myLinkedList = LinkedList()
-    myLinkedList.insertHead(4)
-    myLinkedList.insertHead(3)
-    myLinkedList.insertHead(2)
-    myLinkedList.insertHead(1)
+    myLL = LinkedList()
 
-    myLinkedList.insertTail(5)
-    myLinkedList.insertTail(6)
+    myLL.insertHead(4)
+    myLL.insertHead(3)
+    myLL.insertHead(2)
+    myLL.insertHead(1)
+    
+    myLL.insertTail(5)
+    myLL.insertTail(6)
 
-    myLinkedList.printList()
+    # myLL.print()
+    print("Is 1 in myLL?", myLL.exists(1))
+    print("Is 7 in myLL?", myLL.exists(7))
+
+    myLL.delete(4)
+    myLL.delete(1)
+    myLL.print()
