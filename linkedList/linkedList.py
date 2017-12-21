@@ -72,6 +72,8 @@ class LinkedList:
 
         if curr.nextNode == None:   # Data is at tail of list
             self.tail = curr
+        else:
+            curr.nextNode = None    # Delete reference from current node
 
         self.size -= 1
         return True # Python has built-in garbage collection
