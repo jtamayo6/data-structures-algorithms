@@ -3,16 +3,16 @@ class Node:
         self.data = data
         self.nextNode = nextNode
 
-    def getData():
+    def getData(self):
         return self.data
 
-    def setData(data):
+    def setData(self, data):
         self.data = data
 
-    def getNext():
+    def getNext(self):
         return self.nextNode
 
-    def setNext(nextNode):
+    def setNext(self, nextNode):
         self.nextNode = nextNode
 
 
