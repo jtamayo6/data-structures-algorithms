@@ -71,7 +71,7 @@ class LinkedList:
             prev.nextNode = curr.nextNode
 
         if curr.nextNode == None:   # Data is at tail of list
-            self.tail = curr
+            self.tail = prev
         else:
             curr.nextNode = None    # Delete reference from current node
 
