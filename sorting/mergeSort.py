@@ -3,8 +3,8 @@ def mergeSortV1(arr):
         return arr
 
     mid = len(arr)//2   # // is integer division in Python 3
-    leftArr = mergeSort(arr[:mid])
-    rightArr = mergeSort(arr[mid:])
+    leftArr = mergeSortV1(arr[:mid])
+    rightArr = mergeSortV1(arr[mid:])
 
     # Merge left and right sorted subarrays
     sortedArr = []
